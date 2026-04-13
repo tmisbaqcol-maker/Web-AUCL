@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ACUPALC – Asociación Corregimental de Usuarios Campesinos de Palmar de Candelaria</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;0,800;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #2D5016;
+    --verde-claro: #4A7C2F;
+    --verde-menta: #8BB86A;
+    --crema: #F5F0E8;
+    --tierra: #A0522D;
+    --tierra-claro: #C4784A;
+    --dorado: #C9A227;
+    --oscuro: #1A1A14;
+    --gris-texto: #4A4A3A;
+    --blanco: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--crema);
+    color: var(--oscuro);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--verde);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+
+  .nav-logo {
+    font-family: 'Fraunces', serif;
+    color: var(--crema);
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .nav-logo span {
+    color: var(--dorado);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(245,240,232,0.8);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--dorado); }
+
+  /* HERO */
+  .hero {
+    background: var(--verde);
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 2rem;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(ellipse at 70% 50%, rgba(74,124,47,0.4) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 80%, rgba(45,80,22,0.6) 0%, transparent 50%);
+  }
+
+  .hero-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: rgba(201,162,39,0.2);
+    border: 1px solid rgba(201,162,39,0.5);
+    color: var(--dorado);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 800;
+    color: var(--crema);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--verde-menta);
+  }
+
+  .hero-subtitle {
+    color: rgba(245,240,232,0.7);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    font-weight: 300;
+    max-width: 420px;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--dorado);
+    color: var(--oscuro);
+    padding: 12px 24px;
+    border-radius: 3px;
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .hero-cta:hover { background: #e0b52c; }
+
+  .hero-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 2rem;
+    backdrop-filter: blur(4px);
+  }
+
+  .hero-card h3 {
+    font-family: 'Fraunces', serif;
+    color: var(--dorado);
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .hero-stat {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .hero-stat:last-child { border-bottom: none; }
+
+  .hero-stat-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--verde-menta);
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+
+  .hero-stat p {
+    color: rgba(245,240,232,0.85);
+    font-size: 14px;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 5rem 2rem;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--verde-claro);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    color: var(--verde);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-body {
+    color: var(--gris-texto);
+    max-width: 600px;
+    font-size: 16px;
+  }
+
+  /* IDENTIDAD */
+  #identidad {
+    background: var(--blanco);
+  }
+
+  .mision-vision {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .mv-card {
+    border-left: 3px solid var(--verde-menta);
+    padding: 1.5rem 1.5rem 1.5rem 2rem;
+    background: var(--crema);
+    border-radius: 0 8px 8px 0;
+  }
+
+  .mv-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem;
+    color: var(--verde);
+    margin-bottom: 0.75rem;
+  }
+
+  .mv-card p {
+    color: var(--gris-texto);
+    font-size: 15px;
+  }
+
+  .valores-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 2.5rem;
+  }
+
+  .valor-tag {
+    background: var(--verde);
+    color: var(--crema);
+    padding: 8px 18px;
+    border-radius: 2px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  /* DOFA */
+  #dofa {
+    background: var(--oscuro);
+  }
+
+  #dofa .section-title { color: var(--crema); }
+  #dofa .section-label { color: var(--verde-menta); }
+
+  .dofa-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .dofa-card {
+    padding: 1.75rem;
+    border-radius: 6px;
+  }
+
+  .dofa-card.f { background: rgba(74,124,47,0.15); border: 1px solid rgba(74,124,47,0.3); }
+  .dofa-card.o { background: rgba(201,162,39,0.1); border: 1px solid rgba(201,162,39,0.25); }
+  .dofa-card.d { background: rgba(160,82,45,0.1); border: 1px solid rgba(160,82,45,0.25); }
+  .dofa-card.a { background: rgba(180,50,50,0.1); border: 1px solid rgba(180,50,50,0.2); }
+
+  .dofa-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .dofa-card.f h3 { color: var(--verde-menta); }
+  .dofa-card.o h3 { color: var(--dorado); }
+  .dofa-card.d h3 { color: var(--tierra-claro); }
+  .dofa-card.a h3 { color: #E07070; }
+
+  .dofa-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .dofa-card li {
+    color: rgba(245,240,232,0.8);
+    font-size: 14px;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .dofa-card li::before {
+    content: '–';
+    opacity: 0.5;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* EJES */
+  #ejes {
+    background: var(--crema);
+  }
+
+  .ejes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .eje-card {
+    background: var(--blanco);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .eje-header {
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .eje-num {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    font-weight: 700;
+    flex-shrink: 0;
+    color: var(--blanco);
+  }
+
+  .e1 .eje-num { background: var(--verde); }
+  .e2 .eje-num { background: var(--tierra); }
+  .e3 .eje-num { background: var(--dorado); color: var(--oscuro); }
+  .e4 .eje-num { background: #3A7D6B; }
+
+  .eje-header h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1rem;
+    color: var(--oscuro);
+    line-height: 1.3;
+  }
+
+  .eje-body {
+    padding: 0 1.5rem 1.5rem;
+  }
+
+  .eje-objetivo {
+    font-size: 13px;
+    color: var(--gris-texto);
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: var(--crema);
+    border-radius: 4px;
+    font-style: italic;
+  }
+
+  .eje-estrategias {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .eje-estrategias li {
+    font-size: 13px;
+    color: var(--gris-texto);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .eje-estrategias li::before {
+    content: '→';
+    color: var(--verde-claro);
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-size: 12px;
+  }
+
+  /* PLAN */
+  #plan {
+    background: var(--blanco);
+  }
+
+  .plan-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2.5rem;
+    font-size: 14px;
+  }
+
+  .plan-table th {
+    background: var(--verde);
+    color: var(--crema);
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .plan-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    color: var(--gris-texto);
+    vertical-align: top;
+  }
+
+  .plan-table tr:last-child td { border-bottom: none; }
+  .plan-table tr:nth-child(even) td { background: var(--crema); }
+
+  /* MAPA */
+  #mapa-estrategico {
+    background: var(--verde);
+    text-align: center;
+  }
+
+  #mapa-estrategico .section-title { color: var(--crema); }
+  #mapa-estrategico .section-label { color: var(--verde-menta); }
+
+  .mapa-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0;
+    margin-top: 3rem;
+  }
+
+  .mapa-step {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 6px;
+    padding: 1.25rem 1rem;
+    width: 160px;
+    text-align: center;
+  }
+
+  .mapa-step-icon {
+    font-size: 22px;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .mapa-step p {
+    color: var(--crema);
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .mapa-arrow {
+    color: var(--verde-menta);
+    font-size: 20px;
+    padding: 0 8px;
+    font-weight: 300;
+  }
+
+  /* DOCUMENTOS */
+  #documentos {
+    background: var(--crema);
+  }
+
+  .docs-intro {
+    background: var(--blanco);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(0,0,0,0.06);
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .docs-intro-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(45,80,22,0.1);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 18px;
+  }
+
+  .docs-intro p {
+    font-size: 14px;
+    color: var(--gris-texto);
+  }
+
+  .docs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .doc-card {
+    background: var(--blanco);
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.07);
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    text-decoration: none;
+  }
+
+  .doc-card:hover {
+    border-color: var(--verde-menta);
+    box-shadow: 0 6px 20px rgba(45,80,22,0.12);
+    transform: translateY(-2px);
+  }
+
+  .doc-thumb {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    background: #e8e8e0;
+  }
+
+  .doc-thumb-placeholder {
+    width: 100%;
+    height: 180px;
+    background: rgba(45,80,22,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+  }
+
+  .doc-body {
+    padding: 1rem 1.25rem;
+  }
+
+  .doc-body h4 {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--oscuro);
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .doc-body p {
+    font-size: 12px;
+    color: var(--gris-texto);
+    line-height: 1.5;
+  }
+
+  .doc-badge {
+    display: inline-block;
+    margin-top: 8px;
+    background: rgba(45,80,22,0.1);
+    color: var(--verde);
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    padding: 3px 8px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .doc-preview-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--verde-claro);
+    font-weight: 500;
+  }
+
+  /* LIGHTBOX */
+  .lightbox-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10,10,8,0.92);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+  }
+
+  .lightbox-overlay.active { display: flex; }
+
+  .lightbox-inner {
+    position: relative;
+    max-width: 860px;
+    width: 100%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .lightbox-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .lightbox-title {
+    color: var(--crema);
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .lightbox-close {
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: var(--crema);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+
+  .lightbox-close:hover { background: rgba(255,255,255,0.2); }
+
+  .lightbox-img {
+    max-height: calc(90vh - 80px);
+    width: 100%;
+    object-fit: contain;
+    border-radius: 6px;
+  }
+
+  .lightbox-badge {
+    display: inline-block;
+    background: rgba(201,162,39,0.2);
+    border: 1px solid rgba(201,162,39,0.4);
+    color: var(--dorado);
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .docs-repo-link {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .docs-repo-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--oscuro);
+    color: var(--crema);
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-size: 13px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .docs-repo-link a:hover { background: var(--verde); }
+
+  /* FINANCIERO */
+  #financiero {
+    background: var(--blanco);
+  }
+
+  .fin-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2.5rem;
+  }
+
+  .fin-card {
+    background: var(--crema);
+    border-radius: 8px;
+    padding: 1.75rem;
+  }
+
+  .fin-card h3 {
+    font-family: 'Fraunces', serif;
+    color: var(--verde);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--verde-menta);
+    padding-bottom: 0.5rem;
+  }
+
+  .fin-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .fin-card li {
+    font-size: 14px;
+    color: var(--gris-texto);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .fin-card li::before {
+    content: '✓';
+    color: var(--verde-claro);
+    flex-shrink: 0;
+    font-size: 12px;
+    margin-top: 2px;
+  }
+
+  /* SEGUIMIENTO */
+  #seguimiento {
+    background: var(--crema);
+  }
+
+  .seg-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .seg-card {
+    background: var(--blanco);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .seg-card-icon {
+    font-size: 28px;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .seg-card h4 {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--verde);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .seg-card p {
+    font-size: 12px;
+    color: var(--gris-texto);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--oscuro);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  footer .footer-logo {
+    font-family: 'Fraunces', serif;
+    color: var(--crema);
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  footer .footer-logo span { color: var(--dorado); }
+
+  footer p {
+    color: rgba(245,240,232,0.5);
+    font-size: 13px;
+  }
+
+  footer .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 1.5rem 0;
+    list-style: none;
+  }
+
+  footer .footer-links a {
+    color: rgba(245,240,232,0.6);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+  }
+  footer .footer-links a:hover { color: var(--dorado); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { display: none; }
+    .hero-grid { grid-template-columns: 1fr; }
+    .mision-vision { grid-template-columns: 1fr; }
+    .dofa-grid { grid-template-columns: 1fr; }
+    .ejes-grid { grid-template-columns: 1fr; }
+    .fin-grid { grid-template-columns: 1fr; }
+    .seg-grid { grid-template-columns: 1fr 1fr; }
+    .mapa-step { width: 130px; }
+    .plan-table { font-size: 12px; }
+    .plan-table th, .plan-table td { padding: 10px; }
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-content > * {
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-content > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero-content > *:nth-child(3) { animation-delay: 0.3s; }
+  .hero-content > *:nth-child(4) { animation-delay: 0.4s; }
+  .hero-card { animation: fadeUp 0.6s 0.5s ease both; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">ACUP<span>ALC</span></div>
+  <ul class="nav-links">
+    <li><a href="#identidad">Identidad</a></li>
+    <li><a href="#dofa">Diagnóstico</a></li>
+    <li><a href="#ejes">Ejes Estratégicos</a></li>
+    <li><a href="#plan">Plan 2026</a></li>
+    <li><a href="#documentos">Documentos</a></li>
+    <li><a href="#financiero">Financiero</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-grid container">
+    <div class="hero-content">
+      <div class="hero-tag">Horizonte estratégico 2026–2030</div>
+      <h1>Asociación Corregimental de Usuarios <em>Campesinos</em></h1>
+      <p class="hero-subtitle">Palmar de Candelaria — Fortaleciendo el campo, construyendo comunidad, sembrando futuro sostenible.</p>
+      <a href="#identidad" class="hero-cta">Conocer nuestra misión ↓</a>
+    </div>
+    <div class="hero-card">
+      <h3>Pilares fundamentales</h3>
+      <div class="hero-stat">
+        <div class="hero-stat-dot"></div>
+        <p>Representación y acompañamiento de los campesinos asociados</p>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-dot"></div>
+        <p>Gestión de proyectos productivos, sociales y ambientales</p>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-dot"></div>
+        <p>Desarrollo sostenible y seguridad alimentaria familiar</p>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-dot"></div>
+        <p>Defensa de los derechos del campesinado colombiano</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IDENTIDAD -->
+<section id="identidad">
+  <div class="container">
+    <div class="section-label">Quiénes somos</div>
+    <h2 class="section-title">Identidad Organizacional</h2>
+    <p class="section-body">
+      ACUPALC es una organización campesina sin ánimo de lucro, de carácter comunitario, orientada al fortalecimiento social, productivo y económico de los pequeños productores del corregimiento de Palmar de Candelaria.
+    </p>
+
+    <div class="mision-vision">
+      <div class="mv-card">
+        <h3>Misión</h3>
+        <p>Representar, fortalecer y acompañar a los campesinos asociados mediante la gestión de proyectos productivos, sociales y ambientales, promoviendo el desarrollo sostenible, la seguridad alimentaria y el bienestar integral de las familias rurales del corregimiento.</p>
+      </div>
+      <div class="mv-card">
+        <h3>Visión 2030</h3>
+        <p>Ser una organización campesina sólida, autosostenible y reconocida a nivel municipal y departamental por su liderazgo en producción agropecuaria sostenible, gestión de recursos y defensa de los derechos del campesinado.</p>
+      </div>
+    </div>
+
+    <div class="valores-grid">
+      <div class="valor-tag">Solidaridad</div>
+      <div class="valor-tag">Transparencia</div>
+      <div class="valor-tag">Participación democrática</div>
+      <div class="valor-tag">Equidad</div>
+      <div class="valor-tag">Responsabilidad ambiental</div>
+      <div class="valor-tag">Compromiso comunitario</div>
+    </div>
+  </div>
+</section>
+
+<!-- DOFA -->
+<section id="dofa">
+  <div class="container">
+    <div class="section-label">Diagnóstico estratégico</div>
+    <h2 class="section-title">Matriz DOFA</h2>
+    <div class="dofa-grid">
+      <div class="dofa-card f">
+        <h3>Fortalezas</h3>
+        <ul>
+          <li>Experiencia agrícola tradicional</li>
+          <li>Sentido de pertenencia comunitario</li>
+          <li>Base social organizada</li>
+          <li>Conocimiento del territorio</li>
+        </ul>
+      </div>
+      <div class="dofa-card o">
+        <h3>Oportunidades</h3>
+        <ul>
+          <li>Acceso a programas del Estado (Ministerio de Agricultura, UMATA)</li>
+          <li>Convocatorias de cooperación internacional</li>
+          <li>Mercados campesinos y compras públicas locales</li>
+          <li>Programas de agricultura sostenible y transición agroecológica</li>
+        </ul>
+      </div>
+      <div class="dofa-card d">
+        <h3>Debilidades</h3>
+        <ul>
+          <li>Limitaciones en gestión administrativa</li>
+          <li>Bajo acceso a financiamiento</li>
+          <li>Falta de infraestructura productiva</li>
+          <li>Escasa tecnificación</li>
+        </ul>
+      </div>
+      <div class="dofa-card a">
+        <h3>Amenazas</h3>
+        <ul>
+          <li>Cambio climático</li>
+          <li>Intermediación comercial</li>
+          <li>Variabilidad de precios</li>
+          <li>Conflictos por uso del suelo</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EJES ESTRATÉGICOS -->
+<section id="ejes">
+  <div class="container">
+    <div class="section-label">Direccionamiento 2026–2030</div>
+    <h2 class="section-title">Ejes Estratégicos</h2>
+    <div class="ejes-grid">
+
+      <div class="eje-card e1">
+        <div class="eje-header">
+          <div class="eje-num">1</div>
+          <h3>Fortalecimiento Organizacional</h3>
+        </div>
+        <div class="eje-body">
+          <p class="eje-objetivo">Consolidar la estructura administrativa, jurídica y financiera de ACUPALC.</p>
+          <ul class="eje-estrategias">
+            <li>Actualización de estatutos</li>
+            <li>Capacitación en liderazgo y gestión</li>
+            <li>Implementación de manuales administrativos</li>
+            <li>Creación de comité de control interno</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="eje-card e2">
+        <div class="eje-header">
+          <div class="eje-num">2</div>
+          <h3>Desarrollo Productivo y Comercial</h3>
+        </div>
+        <div class="eje-body">
+          <p class="eje-objetivo">Mejorar la productividad y el acceso a mercados.</p>
+          <ul class="eje-estrategias">
+            <li>Proyectos agropecuarios sostenibles</li>
+            <li>Alianzas con mercados locales</li>
+            <li>Creación de marca colectiva campesina</li>
+            <li>Participación en ferias y ruedas de negocio</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="eje-card e3">
+        <div class="eje-header">
+          <div class="eje-num">3</div>
+          <h3>Gestión de Proyectos y Recursos</h3>
+        </div>
+        <div class="eje-body">
+          <p class="eje-objetivo">Gestionar recursos públicos y privados para el desarrollo rural.</p>
+          <ul class="eje-estrategias">
+            <li>Elaboración de banco de proyectos</li>
+            <li>Postulación a convocatorias públicas</li>
+            <li>Alianzas con alcaldía, gobernación y ONG</li>
+            <li>Formación en formulación de proyectos (MGA)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="eje-card e4">
+        <div class="eje-header">
+          <div class="eje-num">4</div>
+          <h3>Sostenibilidad Ambiental</h3>
+        </div>
+        <div class="eje-body">
+          <p class="eje-objetivo">Promover prácticas agrícolas sostenibles y responsables.</p>
+          <ul class="eje-estrategias">
+            <li>Capacitación en agroecología</li>
+            <li>Conservación de fuentes hídricas</li>
+            <li>Implementación de sistemas silvopastoriles</li>
+            <li>Uso eficiente del agua</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAN DE ACCIÓN -->
+<section id="plan">
+  <div class="container">
+    <div class="section-label">Primer año</div>
+    <h2 class="section-title">Plan de Acción 2026</h2>
+
+    <table class="plan-table">
+      <thead>
+        <tr>
+          <th>Actividad</th>
+          <th>Responsable</th>
+          <th>Plazo</th>
+          <th>Indicador</th>
+          <th>Fuente de Recursos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Actualización estatutaria</td>
+          <td>Junta Directiva</td>
+          <td>6 meses</td>
+          <td>Estatutos aprobados</td>
+          <td>Recursos propios</td>
+        </tr>
+        <tr>
+          <td>Proyecto productivo piloto</td>
+          <td>Comité Productivo</td>
+          <td>1 año</td>
+          <td>Proyecto implementado</td>
+          <td>Convocatoria pública</td>
+        </tr>
+        <tr>
+          <td>Capacitación en formulación de proyectos</td>
+          <td>Presidencia</td>
+          <td>3 meses</td>
+          <td>20 asociados capacitados</td>
+          <td>Alcaldía</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- MAPA ESTRATÉGICO -->
+<section id="mapa-estrategico">
+  <div class="container">
+    <div class="section-label">Ruta de impacto</div>
+    <h2 class="section-title">Mapa Estratégico</h2>
+    <div class="mapa-flow">
+      <div class="mapa-step">
+        <span class="mapa-step-icon">🏛️</span>
+        <p>Fortalecimiento organizacional</p>
+      </div>
+      <div class="mapa-arrow">→</div>
+      <div class="mapa-step">
+        <span class="mapa-step-icon">📋</span>
+        <p>Mejor gestión de proyectos</p>
+      </div>
+      <div class="mapa-arrow">→</div>
+      <div class="mapa-step">
+        <span class="mapa-step-icon">🌱</span>
+        <p>Mayor productividad</p>
+      </div>
+      <div class="mapa-arrow">→</div>
+      <div class="mapa-step">
+        <span class="mapa-step-icon">💰</span>
+        <p>Mejores ingresos</p>
+      </div>
+      <div class="mapa-arrow">→</div>
+      <div class="mapa-step">
+        <span class="mapa-step-icon">🤝</span>
+        <p>Bienestar campesino sostenible</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCUMENTOS DE GOBIERNO -->
+<section id="documentos">
+  <div class="container">
+    <div class="section-label">Transparencia y gobierno</div>
+    <h2 class="section-title">Documentos de Gobierno</h2>
+
+    <div class="docs-intro">
+      <div class="docs-intro-icon">📁</div>
+      <div>
+        <strong style="display:block; margin-bottom:4px; font-size:14px; color:var(--oscuro);">Documentos oficiales de ACUPALC</strong>
+        <p>Documentos institucionales de gobernanza, identificación tributaria y registro ante entidades del Estado. NIT: <strong>900857355-2</strong> · Representante Legal: <strong>Alicia Esther Polo Julio</strong></p>
+      </div>
+    </div>
+
+    <div class="docs-grid" id="docs-container">
+
+      <!-- Doc 1: Certificado UMATA -->
+      <div class="doc-card" onclick="openLightbox('Documento_de_Alcaldia.jpeg','Certificado UMATA – Alcaldía de Luruaco','Certificado oficial')">
+        <img class="doc-thumb"
+             src="https://raw.githubusercontent.com/tmisbaqcol-maker/Web-AUCL/main/Docs%20-%20Gobierno/Documento_de_Alcaldia.jpeg"
+             alt="Certificado UMATA"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="doc-thumb-placeholder" style="display:none;">🏛️</div>
+        <div class="doc-body">
+          <h4>Certificado UMATA – Alcaldía de Luruaco</h4>
+          <p>Inscripción como pequeño productor agropecuario. Secretario de UMATA. Mayo 2023.</p>
+          <span class="doc-badge">Certificado oficial</span>
+          <div class="doc-preview-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            Ver documento
+          </div>
+        </div>
+      </div>
+
+      <!-- Doc 2: Formulario de Caracterización ANT -->
+      <div class="doc-card" onclick="openLightbox('Formulario_de_Caracterización.jpeg','Formulario de Caracterización ANT','ANT – Agencia Nacional de Tierras')">
+        <img class="doc-thumb"
+             src="https://raw.githubusercontent.com/tmisbaqcol-maker/Web-AUCL/main/Docs%20-%20Gobierno/Formulario_de_Caracterizaci%C3%B3n.jpeg"
+             alt="Formulario de Caracterización"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="doc-thumb-placeholder" style="display:none;">📋</div>
+        <div class="doc-body">
+          <h4>Formulario de Caracterización ANT</h4>
+          <p>N° FCAO-00007214. Agencia Nacional de Tierras. Luruaco, Atlántico.</p>
+          <span class="doc-badge">ANT – Agencia Nacional de Tierras</span>
+          <div class="doc-preview-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            Ver documento
+          </div>
+        </div>
+      </div>
+
+      <!-- Doc 3: Foto integrantes -->
+      <div class="doc-card" onclick="openLightbox('Integrantes.jpeg','Reunión de asociados','Registro comunitario')">
+        <img class="doc-thumb"
+             src="https://raw.githubusercontent.com/tmisbaqcol-maker/Web-AUCL/main/Docs%20-%20Gobierno/Integrantes.jpeg"
+             alt="Integrantes ACUPALC"
+             style="object-position: center;"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="doc-thumb-placeholder" style="display:none;">🤝</div>
+        <div class="doc-body">
+          <h4>Registro fotográfico – Reunión de asociados</h4>
+          <p>Evidencia de asamblea comunitaria con miembros activos en Palmar de Candelaria.</p>
+          <span class="doc-badge">Registro comunitario</span>
+          <div class="doc-preview-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            Ver imagen
+          </div>
+        </div>
+      </div>
+
+      <!-- Doc 4: RUT DIAN -->
+      <div class="doc-card" onclick="openLightbox('RUT_-_DIAN.jpeg','RUT – Registro Único Tributario (DIAN)','DIAN – Tributario')">
+        <img class="doc-thumb"
+             src="https://raw.githubusercontent.com/tmisbaqcol-maker/Web-AUCL/main/Docs%20-%20Gobierno/RUT_-_DIAN.jpeg"
+             alt="RUT DIAN"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="doc-thumb-placeholder" style="display:none;">📊</div>
+        <div class="doc-body">
+          <h4>RUT – Registro Único Tributario (DIAN)</h4>
+          <p>Formulario 001 · NIT: 900857355-2 · Actualizado: Nov 2022.</p>
+          <span class="doc-badge">DIAN – Tributario</span>
+          <div class="doc-preview-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            Ver documento
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox-overlay" id="lightbox" onclick="closeLightboxOutside(event)">
+      <div class="lightbox-inner">
+        <div class="lightbox-header">
+          <div>
+            <div class="lightbox-title" id="lb-title"></div>
+            <span class="lightbox-badge" id="lb-badge"></span>
+          </div>
+          <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        </div>
+        <img class="lightbox-img" id="lb-img" src="" alt="">
+      </div>
+    </div>
+
+    <div class="docs-repo-link">
+      <a href="https://github.com/tmisbaqcol-maker/Web-AUCL/tree/main/Docs%20-%20Gobierno" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        Ver repositorio en GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FINANCIERO -->
+<section id="financiero">
+  <div class="container">
+    <div class="section-label">Sostenibilidad económica</div>
+    <h2 class="section-title">Plan Financiero Básico</h2>
+    <div class="fin-grid">
+      <div class="fin-card">
+        <h3>Fuentes de Ingresos</h3>
+        <ul>
+          <li>Cuotas de afiliación de asociados</li>
+          <li>Ingresos por proyectos productivos</li>
+          <li>Convenios institucionales (alcaldía, gobernación)</li>
+          <li>Donaciones y cooperación internacional</li>
+        </ul>
+      </div>
+      <div class="fin-card">
+        <h3>Control y Transparencia</h3>
+        <ul>
+          <li>Libro contable actualizado permanentemente</li>
+          <li>Revisor fiscal o comité de vigilancia</li>
+          <li>Presupuesto anual aprobado por Asamblea</li>
+          <li>Informe semestral de ejecución</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEGUIMIENTO -->
+<section id="seguimiento">
+  <div class="container">
+    <div class="section-label">Evaluación y control</div>
+    <h2 class="section-title">Seguimiento Estratégico</h2>
+    <div class="seg-grid">
+      <div class="seg-card">
+        <span class="seg-card-icon">📅</span>
+        <h4>Evaluación semestral</h4>
+        <p>Revisión de indicadores cada seis meses</p>
+      </div>
+      <div class="seg-card">
+        <span class="seg-card-icon">📝</span>
+        <h4>Informe anual</h4>
+        <p>Reporte consolidado de gestión y resultados</p>
+      </div>
+      <div class="seg-card">
+        <span class="seg-card-icon">🏟️</span>
+        <h4>Asamblea general</h4>
+        <p>Rendición de cuentas ante todos los asociados</p>
+      </div>
+      <div class="seg-card">
+        <span class="seg-card-icon">📈</span>
+        <h4>Indicadores financieros</h4>
+        <p>Métricas sociales y económicas por eje</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">ACUP<span>ALC</span></div>
+  <ul class="footer-links">
+    <li><a href="#identidad">Identidad</a></li>
+    <li><a href="#dofa">Diagnóstico</a></li>
+    <li><a href="#ejes">Ejes estratégicos</a></li>
+    <li><a href="#plan">Plan 2026</a></li>
+    <li><a href="#documentos">Documentos</a></li>
+  </ul>
+  <p>Asociación Corregimental de Usuarios Campesinos de Palmar de Candelaria</p>
+  <p style="margin-top:6px;">Plan Estratégico 2026–2030 · Palmar de Candelaria, Colombia</p>
+</footer>
+
+<script>
+const RAW_BASE = 'https://raw.githubusercontent.com/tmisbaqcol-maker/Web-AUCL/main/Docs%20-%20Gobierno/';
+
+function openLightbox(filename, title, badge) {
+  const encoded = encodeURIComponent(filename);
+  document.getElementById('lb-img').src   = RAW_BASE + encoded;
+  document.getElementById('lb-title').textContent = title;
+  document.getElementById('lb-badge').textContent = badge;
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.getElementById('lb-img').src = '';
+  document.body.style.overflow = '';
+}
+
+function closeLightboxOutside(e) {
+  if (e.target === document.getElementById('lightbox')) closeLightbox();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLightbox();
+});
+</script>
+
+</body>
+</html>
